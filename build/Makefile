@@ -148,6 +148,54 @@ draw/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/build
 .PHONY : draw/fast
 
+src/board.obj: src/board.cpp.obj
+.PHONY : src/board.obj
+
+# target to build an object file
+src/board.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/board.cpp.obj
+.PHONY : src/board.cpp.obj
+
+src/board.i: src/board.cpp.i
+.PHONY : src/board.i
+
+# target to preprocess a source file
+src/board.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/board.cpp.i
+.PHONY : src/board.cpp.i
+
+src/board.s: src/board.cpp.s
+.PHONY : src/board.s
+
+# target to generate assembly for a file
+src/board.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/board.cpp.s
+.PHONY : src/board.cpp.s
+
+src/canvas.obj: src/canvas.cpp.obj
+.PHONY : src/canvas.obj
+
+# target to build an object file
+src/canvas.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/canvas.cpp.obj
+.PHONY : src/canvas.cpp.obj
+
+src/canvas.i: src/canvas.cpp.i
+.PHONY : src/canvas.i
+
+# target to preprocess a source file
+src/canvas.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/canvas.cpp.i
+.PHONY : src/canvas.cpp.i
+
+src/canvas.s: src/canvas.cpp.s
+.PHONY : src/canvas.s
+
+# target to generate assembly for a file
+src/canvas.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/canvas.cpp.s
+.PHONY : src/canvas.cpp.s
+
 src/char_lib.obj: src/char_lib.cpp.obj
 .PHONY : src/char_lib.obj
 
@@ -207,6 +255,12 @@ help:
 	@echo ... package_source
 	@echo ... rebuild_cache
 	@echo ... draw
+	@echo ... src/board.obj
+	@echo ... src/board.i
+	@echo ... src/board.s
+	@echo ... src/canvas.obj
+	@echo ... src/canvas.i
+	@echo ... src/canvas.s
 	@echo ... src/char_lib.obj
 	@echo ... src/char_lib.i
 	@echo ... src/char_lib.s
