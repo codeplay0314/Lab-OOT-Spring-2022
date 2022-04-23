@@ -8,13 +8,13 @@ using namespace std;
 
 class Board {
     static shared_ptr<Board> _instance;
-    static const int size;
+    static const int _size;
     
     Canvas _canvas;
 public:
     Board(int n) : _canvas(n) {}
     static shared_ptr<Board> Instance() {
-        if (!_instance) _instance = make_shared<Board>(size);
+        if (!_instance) _instance = make_shared<Board>(_size);
         return _instance;
     }
 

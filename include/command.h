@@ -25,12 +25,23 @@ public:
 
 class LineCommand : public Command {
 public:
-    LineCommand(shared_ptr<Board> board, vector<int> args);
+    LineCommand(shared_ptr<Board> board, Coordinate begin, Coordinate end);
 
     virtual void Execute();
 private:
     shared_ptr<Board> _board;
-    Coordinate begin, end;
+    Coordinate _begin, _end;
+};
+
+class TextCommand : public Command {
+public:
+    TextCommand(shared_ptr<Board> board, Coordinate begin, string text);
+
+    virtual void Execute();
+private:
+    shared_ptr<Board> _board;
+    Coordinate _begin;
+    string _text;
 };
 
 #endif
