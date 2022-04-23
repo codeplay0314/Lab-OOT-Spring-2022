@@ -3,23 +3,28 @@
 
 #include <memory>
 #include "canvas.h"
+#include "gray_scale.h"
 #include "coordinate.h"
 using namespace std;
 
 class Board {
     static shared_ptr<Board> _instance;
-    static const int _size;
     
     Canvas _canvas;
-public:
-    Board(int n) : _canvas(n) {}
-    static shared_ptr<Board> Instance() {
-        if (!_instance) _instance = make_shared<Board>(_size);
-        return _instance;
-    }
+    const int _size;
 
-    void Plot(Coordinate coor);
+    int _gray = 0;
+    shared_ptr<GrayScale> _gscale;
+public:
+    Board(int n, int gscale);
+
+    static shared_ptr<Board> Instance(int n, int gscale);
+    static shared_ptr<Board> Instance(int gscale);
+    static shared_ptr<Board> Instance();
+
+    void SetGray(int gray);
     int GetColor();
+    void Plot(Coordinate coor);
 
     void Show();
 };

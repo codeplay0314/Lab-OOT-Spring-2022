@@ -4,8 +4,13 @@
 // CommandInvoker
 shared_ptr<CommandInvoker> CommandInvoker::_instance;
 
+shared_ptr<CommandInvoker> CommandInvoker::Instance() {
+    if (!_instance) _instance = make_shared<CommandInvoker>();
+    return _instance;
+}
+
 // LineCommand
-LineCommand::LineCommand (shared_ptr<Board> board, Coordinate begin, Coordinate end) :
+LineCommand::LineCommand(shared_ptr<Board> board, Coordinate begin, Coordinate end) :
     _board(board), _begin(begin), _end(end) {}
 
 void LineCommand::Execute() {
@@ -22,7 +27,7 @@ void LineCommand::Execute() {
 }
 
 // TextCommand
-TextCommand::TextCommand (shared_ptr<Board> board, Coordinate begin, string text) :
+TextCommand::TextCommand(shared_ptr<Board> board, Coordinate begin, string text) :
     _board(board), _begin(begin), _text(text) {}
 
 void TextCommand::Execute() {
@@ -38,4 +43,12 @@ void TextCommand::Execute() {
                 }
         cur = Coordinate(cur.x(), cur.y() + n + 1);
     }
+}
+
+// ColorCommand
+ColorCommand::ColorCommand(shared_ptr<Board> board, int gray) :
+    _board(board), _gray(gray) {}
+
+void ColorCommand::Execute() {
+    _board->SetGray(_gray);
 }

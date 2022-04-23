@@ -13,10 +13,7 @@ class CommandInvoker {
     static shared_ptr<CommandInvoker> _instance;
 
 public:
-    static shared_ptr<CommandInvoker> Instance() {
-        if (!_instance) _instance = make_shared<CommandInvoker>();
-        return _instance;
-    }
+    static shared_ptr<CommandInvoker> Instance();
 
     void Execute(Command& command) {
         command.Execute();
@@ -42,6 +39,16 @@ private:
     shared_ptr<Board> _board;
     Coordinate _begin;
     string _text;
+};
+
+class ColorCommand : public Command {
+public:
+    ColorCommand(shared_ptr<Board> board, int color);
+
+    virtual void Execute();
+private:
+    shared_ptr<Board> _board;
+    int _gray;
 };
 
 #endif

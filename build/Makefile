@@ -244,6 +244,30 @@ src/command.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/command.cpp.s
 .PHONY : src/command.cpp.s
 
+src/gray_scale.obj: src/gray_scale.cpp.obj
+.PHONY : src/gray_scale.obj
+
+# target to build an object file
+src/gray_scale.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/gray_scale.cpp.obj
+.PHONY : src/gray_scale.cpp.obj
+
+src/gray_scale.i: src/gray_scale.cpp.i
+.PHONY : src/gray_scale.i
+
+# target to preprocess a source file
+src/gray_scale.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/gray_scale.cpp.i
+.PHONY : src/gray_scale.cpp.i
+
+src/gray_scale.s: src/gray_scale.cpp.s
+.PHONY : src/gray_scale.s
+
+# target to generate assembly for a file
+src/gray_scale.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/gray_scale.cpp.s
+.PHONY : src/gray_scale.cpp.s
+
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
 
@@ -291,6 +315,9 @@ help:
 	@echo ... src/command.obj
 	@echo ... src/command.i
 	@echo ... src/command.s
+	@echo ... src/gray_scale.obj
+	@echo ... src/gray_scale.i
+	@echo ... src/gray_scale.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s
