@@ -20,14 +20,12 @@ shared_ptr<Board> Board::Instance() {
     return _instance;
 }
 
-void Board::Show() {
-    for (int j = _size - 1; j >= 0; j--) {
-        for (int i = 0; i < _size; i++) {
-            cout << (*_canvas.Get())[i][j];
-        }
-        cout << endl;
-    }
-    cout << endl;
+int Board::GetSize() {
+    return _size;
+}
+
+Canvas* Board::GetCanvas() {
+    return &_canvas;
 }
 
 void Board::SetGray(int gray) {
@@ -38,7 +36,8 @@ int Board::GetColor() {
     return _gscale->GetColor(_gray);
 }
 
-void Board::Plot(Coordinate coor) {
-    if (coor.x() < 0 || coor.x() >= _size || coor.y() < 0 || coor.y() >= _size) return;
+bool Board::Plot(Coordinate coor) {
+    if (coor.x() < 0 || coor.x() >= _size || coor.y() < 0 || coor.y() >= _size) return false;
     _canvas.Set(coor, Board::GetColor());
+    return true;
 }

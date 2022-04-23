@@ -6,49 +6,57 @@
 
 class Command {
 public:
-    virtual void Execute() = 0;
+    virtual void Execute(shared_ptr<Board> board) = 0;
+    virtual void Execute(shared_ptr<Board> board, Coordinate);
 };
 
-class CommandInvoker {
-    static shared_ptr<CommandInvoker> _instance;
-
+class ShowCommand : public Command {
 public:
-    static shared_ptr<CommandInvoker> Instance();
-
-    void Execute(Command& command) {
-        command.Execute();
-    }
+    virtual void Execute(shared_ptr<Board> board) override;
 };
 
 class LineCommand : public Command {
 public:
-    LineCommand(shared_ptr<Board> board, Coordinate begin, Coordinate end);
+    LineCommand(Coordinate& begin, Coordinate& end);
 
-    virtual void Execute();
+    virtual void Execute(shared_ptr<Board> board) override;
+    virtual void Execute(shared_ptr<Board> board, Coordinate) override;
 private:
-    shared_ptr<Board> _board;
     Coordinate _begin, _end;
 };
 
 class TextCommand : public Command {
 public:
-    TextCommand(shared_ptr<Board> board, Coordinate begin, string text);
+    TextCommand(Coordinate& offset, string& text);
 
-    virtual void Execute();
+    virtual void Execute(shared_ptr<Board> board) override;
+    virtual void Execute(shared_ptr<Board> board, Coordinate) override;
 private:
-    shared_ptr<Board> _board;
-    Coordinate _begin;
+    Coordinate _offset;
     string _text;
 };
 
 class ColorCommand : public Command {
 public:
-    ColorCommand(shared_ptr<Board> board, int color);
+    ColorCommand(int color);
 
-    virtual void Execute();
+    virtual void Execute(shared_ptr<Board> board) override;
 private:
-    shared_ptr<Board> _board;
     int _gray;
+};
+
+class MacroCommand : public Command {
+public:
+    string Name() { return _name; }
+
+    virtual void Execute(shared_ptr<Board> board) override;
+    virtual void Execute(shared_ptr<Board> board, Coordinate) override;
+    MacroCommand(string& name, Coordinate& offset, vector<shared_ptr<Command>>& commands);
+private:
+    const string _name;
+
+    vector<shared_ptr<Command>> _commands;
+    Coordinate _offset;
 };
 
 #endif

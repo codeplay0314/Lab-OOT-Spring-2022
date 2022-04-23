@@ -220,6 +220,30 @@ src/char_lib.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/char_lib.cpp.s
 .PHONY : src/char_lib.cpp.s
 
+src/cmd_invoker.obj: src/cmd_invoker.cpp.obj
+.PHONY : src/cmd_invoker.obj
+
+# target to build an object file
+src/cmd_invoker.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/cmd_invoker.cpp.obj
+.PHONY : src/cmd_invoker.cpp.obj
+
+src/cmd_invoker.i: src/cmd_invoker.cpp.i
+.PHONY : src/cmd_invoker.i
+
+# target to preprocess a source file
+src/cmd_invoker.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/cmd_invoker.cpp.i
+.PHONY : src/cmd_invoker.cpp.i
+
+src/cmd_invoker.s: src/cmd_invoker.cpp.s
+.PHONY : src/cmd_invoker.s
+
+# target to generate assembly for a file
+src/cmd_invoker.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/cmd_invoker.cpp.s
+.PHONY : src/cmd_invoker.cpp.s
+
 src/command.obj: src/command.cpp.obj
 .PHONY : src/command.obj
 
@@ -312,6 +336,9 @@ help:
 	@echo ... src/char_lib.obj
 	@echo ... src/char_lib.i
 	@echo ... src/char_lib.s
+	@echo ... src/cmd_invoker.obj
+	@echo ... src/cmd_invoker.i
+	@echo ... src/cmd_invoker.s
 	@echo ... src/command.obj
 	@echo ... src/command.i
 	@echo ... src/command.s

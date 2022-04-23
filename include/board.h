@@ -5,7 +5,6 @@
 #include "canvas.h"
 #include "gray_scale.h"
 #include "coordinate.h"
-using namespace std;
 
 class Board {
     static shared_ptr<Board> _instance;
@@ -22,11 +21,12 @@ public:
     static shared_ptr<Board> Instance(int gscale);
     static shared_ptr<Board> Instance();
 
+    int GetSize();
+    Canvas* GetCanvas();
+
     void SetGray(int gray);
     int GetColor();
-    void Plot(Coordinate coor);
-
-    void Show();
+    bool Plot(Coordinate coor);
 };
 
 #endif
