@@ -3,6 +3,7 @@
 
 #include <memory>
 #include "canvas.h"
+#include "coordinate.h"
 using namespace std;
 
 class Board {
@@ -10,7 +11,6 @@ class Board {
     static const int size;
     
     Canvas _canvas;
-
 public:
     Board(int n) : _canvas(n) {}
     static shared_ptr<Board> Instance() {
@@ -18,7 +18,10 @@ public:
         return _instance;
     }
 
-    void show();
+    void Plot(Coordinate coor);
+    int GetColor();
+
+    void Show();
 };
 
 #endif

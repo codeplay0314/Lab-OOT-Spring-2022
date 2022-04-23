@@ -1,5 +1,5 @@
 #include "canvas.h"
 
-shared_ptr<Canvas::canvas> Canvas::get() {
+shared_ptr<Canvas::canvas> Canvas::Get() {
     return _ptr;
 }

@@ -3,6 +3,6 @@
 
 #include <vector>
 
-std::vector<int> getShape(char c);
+std::vector<int> GetShape(char c);
 
 #endif
