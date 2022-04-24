@@ -10,19 +10,21 @@ public:
 };
 
 class BW2Scale : public GrayScale {
-    static shared_ptr<GrayScale> _instance;
 public:
-    static shared_ptr<GrayScale> Instance();
-
     virtual int GetColor(int gray);
+    
+    static shared_ptr<GrayScale> Instance();
+private:
+    static shared_ptr<GrayScale> _instance;
 };
 
 class BW256Scale : public GrayScale {
-    static shared_ptr<GrayScale> _instance;
 public:
-    static shared_ptr<GrayScale> Instance();
-
     virtual int GetColor(int gray);
+    
+    static shared_ptr<GrayScale> Instance();
+private:
+    static shared_ptr<GrayScale> _instance;
 };
 
 #endif

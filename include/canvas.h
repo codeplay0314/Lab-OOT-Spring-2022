@@ -8,15 +8,14 @@ using namespace std;
 
 class Canvas {
 public:
-    typedef vector<vector<int>> canvas;
-    Canvas(int n) : _ptr(new canvas(n, vector<int>(n, 0))) {}
-    shared_ptr<canvas> Get();
-
+    vector<vector<int>>* Get();
     void Set(Coordinate coor, int color) {
-        (*_ptr)[coor.x()][coor.y()] = color;
+        _canvas[coor.x()][coor.y()] = color;
     }
+    
+    Canvas(int n) : _canvas(n, vector<int>(n, 0)) {}
 private:
-    shared_ptr<canvas> _ptr;
+    vector<vector<int>> _canvas;
 };
 
 #endif
