@@ -130,16 +130,17 @@ void TextCommand::Execute(Coordinate offset) {
 }
 
 // ColorCommand
-ColorCommand::ColorCommand(shared_ptr<Board> board, int gray) : _gray(gray) {
+ColorCommand::ColorCommand(shared_ptr<Board> board, int gray, bool undoable) : _gray(gray) {
     _board = board;
+    _undoable = undoable;
 }
 
 shared_ptr<Command> ColorCommand::New() {
-    return New(_board, _gray);
+    return New(_board, _gray, _undoable);
 }
 
-shared_ptr<ColorCommand> ColorCommand::New(shared_ptr<Board> board, int gray) {
-    return make_shared<ColorCommand>(board, gray);
+shared_ptr<ColorCommand> ColorCommand::New(shared_ptr<Board> board, int gray, bool undoable) {
+    return make_shared<ColorCommand>(board, gray, undoable);
 }
 
 void ColorCommand::Execute() {

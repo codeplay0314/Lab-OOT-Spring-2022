@@ -26,8 +26,10 @@ int main(int, char**) {
 
     Coordinate offset1(2, 1);
     vector<shared_ptr<Command>> cmds1;
+    cmds1.push_back(ColorCommand::New(board, 200, true));
     cmds1.push_back(LineCommand::New(board, p1, p2));
     cmds1.push_back(TextCommand::New(board, p, str));
+    cmds1.push_back(ColorCommand::New(board, color, false));
     shared_ptr<MacroCommand> macro1 = MacroCommand::New(board, offset1, cmds1);
     
     Coordinate offset2 = Coordinate(2, 1);
@@ -39,7 +41,7 @@ int main(int, char**) {
 /////////////////////////////////////
     CommandInvoker invoker(board);
 
-    invoker.Execute(ColorCommand::New(board, color));
+    invoker.Execute(ColorCommand::New(board, color, true));
         invoker.Execute(ShowCommand::New(board));
 
     invoker.Execute(LineCommand::New(board, p1, p2));
@@ -49,20 +51,28 @@ int main(int, char**) {
         invoker.Execute(ShowCommand::New(board));
 
     invoker.Execute(TextCommand::New(board, p, str));
-    invoker.Execute(ColorCommand::New(board, 200));
     invoker.Execute(macro1);
+        invoker.Execute(ShowCommand::New(board));
+
+    invoker.Execute(macro2);
+        invoker.Execute(ShowCommand::New(board));
+
+    invoker.Execute(LineCommand::New(board, p1, p2));
+        invoker.Execute(ShowCommand::New(board));
+
+    invoker.Undo();
+        invoker.Execute(ShowCommand::New(board));
+
+    invoker.Undo();
+        invoker.Execute(ShowCommand::New(board));
+
+    invoker.Execute(LineCommand::New(board, p1, p2));
         invoker.Execute(ShowCommand::New(board));
 
     invoker.Undo();
         invoker.Execute(ShowCommand::New(board));
 
     invoker.Redo();
-        invoker.Execute(ShowCommand::New(board));
-
-    invoker.Undo();
-        invoker.Execute(ShowCommand::New(board));
-
-    invoker.Execute(macro2);
         invoker.Execute(ShowCommand::New(board));
 
     return 0;

@@ -62,9 +62,9 @@ class ColorCommand : public Command {
 public:
     virtual void Execute() override;
 
-    ColorCommand(shared_ptr<Board> board, int color);
+    ColorCommand(shared_ptr<Board> board, int color, bool undoable);
     virtual shared_ptr<Command> New() override;
-    static shared_ptr<ColorCommand> New(shared_ptr<Board> board, int color);
+    static shared_ptr<ColorCommand> New(shared_ptr<Board> board, int color, bool undoable);
 private:
     int _gray;
     int _pre_gray;
