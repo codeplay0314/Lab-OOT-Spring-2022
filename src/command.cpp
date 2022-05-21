@@ -64,6 +64,7 @@ void ShowCommand::Execute() {
     vector<vector<int>>* canvas = _board->GetCanvas();
     for (int j = size - 1; j >= 0; j--) {
         for (int i = 0; i < size; i++) {
+            if (i) cout << " ";
             cout << (*canvas)[i][j];
         }
         cout << endl;
@@ -94,7 +95,6 @@ void LineCommand::Execute(Coordinate offset) {
     _executed = true;
 
     // Bresenham's line algorithm
-    offset = offset + _begin;
     int dx = _end.x() - _begin.x();
     int dy = _end.y() - _begin.y();
     double k = (double)dy / dx;
@@ -136,7 +136,7 @@ void TextCommand::Execute(Coordinate offset) {
             for (int j = 0; j < n; j++)
                 if (mat[i]&(1<<j))
                     _board->Plot(Coordinate(cur.x() + n - j - 1, cur.y() + n - i - 1));
-        cur = Coordinate(cur.x(), cur.y() + n + 1);
+        cur = Coordinate(cur.x() + n + 1, cur.y());
     }
 }
 
@@ -163,14 +163,15 @@ void ColorCommand::Execute() {
 }
 
 // MacroCommand
-MacroCommand::MacroCommand(shared_ptr<Board> board, const Coordinate& offset, vector<shared_ptr<Command>>& commands) :
+MacroCommand::MacroCommand(shared_ptr<Board> board, const string& name, const Coordinate& offset, vector<shared_ptr<Command>>& commands) :
     _offset(offset), _commands(commands) {
     _type = CommandType::MACRO;
     _board = board;
+    _name = name;
 }
 
-shared_ptr<MacroCommand> MacroCommand::New(shared_ptr<Board> board, const Coordinate& offset, vector<shared_ptr<Command>>& commands) {
-    return make_shared<MacroCommand>(board, offset, commands);
+shared_ptr<MacroCommand> MacroCommand::New(shared_ptr<Board> board, const string& name, const Coordinate& offset, vector<shared_ptr<Command>>& commands) {
+    return make_shared<MacroCommand>(board, name, offset, commands);
 }
 
 void MacroCommand::Execute() {
@@ -200,7 +201,7 @@ shared_ptr<Command> MacroCommand::Copy() {
 shared_ptr<Command> MacroCommand::Copy(const Coordinate& offset) {
     vector<shared_ptr<Command>> new_cmds;
     for (auto command : _commands) new_cmds.push_back(command->Copy());
-    return make_shared<MacroCommand>(_board, offset, new_cmds);
+    return make_shared<MacroCommand>(_board, _name, offset, new_cmds);
 }
 
 void MacroCommand::SetOffset(const Coordinate& offset) {

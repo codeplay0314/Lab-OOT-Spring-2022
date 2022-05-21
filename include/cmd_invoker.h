@@ -11,10 +11,11 @@ public:
     void Undo();
     void Redo();
     
-    CommandInvoker() {};
+    CommandInvoker(shared_ptr<Board> board) : _board(board) {}
 private:
     stack<shared_ptr<Command>> _undo_stack;
     stack<shared_ptr<Command>> _redo_stack;
+    shared_ptr<Board> _board;
 };
 
 #endif

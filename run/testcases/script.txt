@@ -1,11 +1,8 @@
 color(128)
-show()
 
 line(0,0,19,19)
-show()
 
 undo
-show()
 
 text(11, 0, "!")
 #macro1 {
@@ -14,28 +11,20 @@ text(11, 0, "!")
     text(11, 0, "!")
 }
 !macro1(2,1)
-show()
 
 #macro2 {
     !macro1(2,1)
 }
 !macro2(2,1)
-show()
 
 undo
-show()
 
 redo
-show()
 
 line(0,0,19,19)
-show()
 
 undo
-show()
 
 undo
-show()
 
 line(0,0,19,19)
-show()

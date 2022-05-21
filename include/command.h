@@ -94,14 +94,17 @@ public:
     virtual void Execute(Coordinate) override;
     virtual void SetExecuted(bool executed) override;
 
-    MacroCommand(shared_ptr<Board> board, const Coordinate& offset, vector<shared_ptr<Command>>& commands);
-    static shared_ptr<MacroCommand> New(shared_ptr<Board> board, const Coordinate& offset, vector<shared_ptr<Command>>& commands);
+    string GetName() { return _name; }
+
+    MacroCommand(shared_ptr<Board> board, const string& name, const Coordinate& offset, vector<shared_ptr<Command>>& commands);
+    static shared_ptr<MacroCommand> New(shared_ptr<Board> board, const string& name, const Coordinate& offset, vector<shared_ptr<Command>>& commands);
     shared_ptr<Command> Copy() override;
     shared_ptr<Command> Copy(const Coordinate& offset) override;
     void SetOffset(const Coordinate& offset);
 private:
     vector<shared_ptr<Command>> _commands;
     Coordinate _offset;
+    string _name;
 };
 
 #endif

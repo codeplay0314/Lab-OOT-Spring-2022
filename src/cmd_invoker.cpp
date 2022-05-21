@@ -1,18 +1,35 @@
 
+#include <iostream>
 #include "cmd_invoker.h"
 
 void CommandInvoker::Execute(vector<shared_ptr<Command>> cmds) {
     for (auto cmd : cmds) {
-        switch (cmd->GetType()) {
-        case CommandType::UNDO:
-            Undo();
-            break;
-        case CommandType::REDO:
-            Redo();
-            break;
-        default:
+        // shared_ptr<Board> board = cmd->GetBoard();
+        CommandType type = cmd->GetType();
+        if (type == MACRO) {
+            cout << "Execute Macro Command: " + dynamic_pointer_cast<MacroCommand>(cmd)->GetName() << endl;
             Execute(cmd);
-            break;
+        } else if (type == CommandType::UNDO) {
+            cout << "Execute Undo Command" << endl;
+            Undo();
+        } else if (type == CommandType::REDO) {
+            cout << "Execute Redo Command" << endl;
+            Redo();
+        } else if (type == CommandType::LINE) {
+            cout << "Execute Line Command" << endl;
+            Execute(cmd);
+        } else if (type == CommandType::TEXT) {
+            cout << "Execute Text Command" << endl;
+            Execute(cmd);
+        } else if (type == CommandType::COLOR) {
+            cout << "Execute Color Command" << endl;
+            Execute(cmd);
+        }
+
+        if (type == CommandType::COLOR) {
+            cout << endl;
+        } else {
+            Execute(ShowCommand::New(_board));
         }
     }
 }

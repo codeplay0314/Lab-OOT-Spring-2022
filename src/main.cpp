@@ -1,7 +1,6 @@
 #include <memory>
 #include <vector>
-#include<fstream>
-#include<sstream>
+#include <fstream>
 #include <iostream>
 #include <algorithm>
 #include "board.h"
@@ -10,19 +9,31 @@
 #include "cmd_invoker.h"
 using namespace std;
 
-int main(int, char**) {
-    int gscale = 256, color = 128;
-    // cin >> gscale >> color;
-    shared_ptr<Board> board = make_shared<Board>(20, gscale);
+int main(int argc, char** argv) {
+    char* file_name;
+    int gscale = 2, gray = 0;
 
-    ifstream fin("../script.txt");
-    stringstream buffer;            // stringstream object
-    buffer << fin.rdbuf();          // read file content in stringstream object
-    string script(buffer.str());
+    if (argc == 1) file_name = argv[1];
+    else {
+        gscale = atoi(argv[2]);
+        file_name = argv[3];
+    }
+
+    shared_ptr<Board> board = make_shared<Board>(51, gscale);
+
+    string script;
+    string line;
+    fstream fin(file_name);
+    // fstream fin("run/testcases/script1.txt");
+    while (getline(fin, line)) {
+        if (line.length() < 2 || line[0] != '/' || line[1] != '/') {
+            script += line;
+        }
+    }
 
     CommandPhaser phaser;
     vector<shared_ptr<Command>> cmds = phaser.PharseCommands(board, script);
-    CommandInvoker invoker;
+    CommandInvoker invoker(board);
     invoker.Execute(cmds);
     
     return 0;
@@ -50,16 +61,18 @@ void Test() {
     cmds1.push_back(LineCommand::New(board, p1, p2));
     cmds1.push_back(TextCommand::New(board, p, str));
     cmds1.push_back(ColorCommand::New(board, color, false));
-    shared_ptr<MacroCommand> macro1 = MacroCommand::New(board, offset1, cmds1);
+    string name = "macro1";
+    shared_ptr<MacroCommand> macro1 = MacroCommand::New(board, name, offset1, cmds1);
     
     Coordinate offset2 = Coordinate(2, 1);
     vector<shared_ptr<Command>> cmds2;
     cmds2.push_back(macro1->Copy());
-    shared_ptr<MacroCommand> tmp = MacroCommand::New(board, offset2, cmds2);
+    name = "macro2";
+    shared_ptr<MacroCommand> tmp = MacroCommand::New(board, name, offset2, cmds2);
     shared_ptr<Command> macro2 = tmp->Copy();
 
 /////////////////////////////////////
-    CommandInvoker invoker;
+    CommandInvoker invoker(board);
 
     invoker.Execute(ColorCommand::New(board, color, true));
         invoker.Execute(ShowCommand::New(board));

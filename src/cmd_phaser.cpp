@@ -12,7 +12,7 @@ vector<string> SplitCommand(const string& cmd) {
     vector<string> cmds;
     bool inmacro = false;
     bool instring = false;
-    for (int l = 0, undo, redo, r = 0; l < cmd.length(); r++) {
+    for (int l = 0, r = 0, undo, redo; l < cmd.length(); r++) {
         if (r - l == 0) {
             undo = cmd[r] == 'u';
             redo = cmd[r] == 'r';
@@ -91,11 +91,12 @@ void CommandPhaser::RegisterMacroCommand(string& cmd, shared_ptr<Board> board) {
     for (string str : strs) {
         cmds.push_back(GetCommand(str, board));
     }
-    _macro_table[cmd.substr(1, l - 1)] = MacroCommand::New(board, Coordinate(0, 0), cmds);
+    string name = cmd.substr(1, l - 1); 
+    _macro_table[name] = MacroCommand::New(board, name, Coordinate(0, 0), cmds);
 }
 
 shared_ptr<Command> CommandPhaser::GetMacroCommand(string& cmd, const Coordinate& offset) {
-    return _macro_table[cmd.substr(1, cmd.size() - 1)]->Copy(offset);
+    return _macro_table[cmd]->Copy(offset);
 }
 
 shared_ptr<Command> CommandPhaser::GetCommand(string& cmd, shared_ptr<Board> board) {
@@ -109,14 +110,13 @@ shared_ptr<Command> CommandPhaser::GetCommand(string& cmd, shared_ptr<Board> boa
     } else if (tokens[0] == "text") {
         Coordinate p = Coordinate(atoi(tokens[1].c_str()), atoi(tokens[2].c_str()));
         return TextCommand::New(board, p, tokens[3].substr(1, tokens[3].size() - 2));
-    } else if (tokens[0] == "show") {
-        return ShowCommand::New(board);
     } else if (tokens[0] == "undo") {
         return Command::New(CommandType::UNDO);
     } else if (tokens[0] == "redo") {
         return Command::New(CommandType::REDO);             
     } else {
         Coordinate p = Coordinate(atoi(tokens[1].c_str()), atoi(tokens[2].c_str()));
+        if (tokens[0][0] == '!') tokens[0] = tokens[0].substr(1, cmd.size() - 1);
         return GetMacroCommand(tokens[0], p);
     }
 }
