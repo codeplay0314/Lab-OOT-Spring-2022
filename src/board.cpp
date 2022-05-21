@@ -14,6 +14,10 @@ vector<vector<int>>* Board::GetCanvas() {
     return _canvas.Get();
 }
 
+int Board::GetGray() {
+    return _gray;
+}
+
 void Board::SetGray(int gray) {
     _gray = gray;
 }

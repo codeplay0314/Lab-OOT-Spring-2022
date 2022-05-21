@@ -22,11 +22,19 @@ void Command::SaveState() {
     if (_undoable) SetPreBoard(make_shared<Board>(*_board));
 }
 
+shared_ptr<Command> Command::New(CommandType type) {
+    return make_shared<Command>(type);
+}
+
 shared_ptr<Command> Command::New() {
     return make_shared<Command>();
 }
 
 shared_ptr<Command> Command::Copy() {
+    return Copy(Coordinate(0, 0));
+}
+
+shared_ptr<Command> Command::Copy(const Coordinate& offset) {
     shared_ptr<Command> new_cmd = this->New();
     _executed = false;
     _pre_board = 0;
@@ -35,6 +43,7 @@ shared_ptr<Command> Command::Copy() {
 
 // ShowCommand
 ShowCommand::ShowCommand(shared_ptr<Board> board) {
+    _type = CommandType::SHOW;
     _undoable = false;
     _board = board;
 }
@@ -64,6 +73,7 @@ void ShowCommand::Execute() {
 
 // LineCommand
 LineCommand::LineCommand(shared_ptr<Board> board, Coordinate& begin, Coordinate& end) : _begin(begin), _end(end) {
+    _type = CommandType::LINE;
     _board = board;
 }
 
@@ -97,7 +107,8 @@ void LineCommand::Execute(Coordinate offset) {
 }
 
 // TextCommand
-TextCommand::TextCommand(shared_ptr<Board> board, Coordinate& offset, string& text) : _offset(offset), _text(text) {
+TextCommand::TextCommand(shared_ptr<Board> board, Coordinate& offset, const string& text) : _offset(offset), _text(text) {
+    _type = CommandType::TEXT;
     _board = board;
 }
 
@@ -105,7 +116,7 @@ shared_ptr<Command> TextCommand::New() {
     return New(_board, _offset, _text);
 }
 
-shared_ptr<TextCommand> TextCommand::New(shared_ptr<Board> board, Coordinate& offset, string& text) {
+shared_ptr<TextCommand> TextCommand::New(shared_ptr<Board> board, Coordinate& offset, const string& text) {
     return make_shared<TextCommand>(board, offset, text);
 }
 
@@ -131,6 +142,7 @@ void TextCommand::Execute(Coordinate offset) {
 
 // ColorCommand
 ColorCommand::ColorCommand(shared_ptr<Board> board, int gray, bool undoable) : _gray(gray) {
+    _type = CommandType::COLOR;
     _board = board;
     _undoable = undoable;
 }
@@ -151,12 +163,13 @@ void ColorCommand::Execute() {
 }
 
 // MacroCommand
-MacroCommand::MacroCommand(shared_ptr<Board> board, Coordinate& offset, vector<shared_ptr<Command>>& commands) :
+MacroCommand::MacroCommand(shared_ptr<Board> board, const Coordinate& offset, vector<shared_ptr<Command>>& commands) :
     _offset(offset), _commands(commands) {
+    _type = CommandType::MACRO;
     _board = board;
 }
 
-shared_ptr<MacroCommand> MacroCommand::New(shared_ptr<Board> board, Coordinate& offset, vector<shared_ptr<Command>>& commands) {
+shared_ptr<MacroCommand> MacroCommand::New(shared_ptr<Board> board, const Coordinate& offset, vector<shared_ptr<Command>>& commands) {
     return make_shared<MacroCommand>(board, offset, commands);
 }
 
@@ -168,9 +181,11 @@ void MacroCommand::Execute(Coordinate offset) {
     if (_executed) exit(0);
     _executed = true;
     
+    int gray = _board->GetGray();
     for (auto command : _commands) {
         command->Execute(_offset + offset);
     }
+    ColorCommand::New(_board, gray, false)->Execute();
 }
 
 void MacroCommand::SetExecuted(bool executed) {
@@ -179,7 +194,15 @@ void MacroCommand::SetExecuted(bool executed) {
 }
 
 shared_ptr<Command> MacroCommand::Copy() {
+    return Copy(_offset);
+}
+
+shared_ptr<Command> MacroCommand::Copy(const Coordinate& offset) {
     vector<shared_ptr<Command>> new_cmds;
     for (auto command : _commands) new_cmds.push_back(command->Copy());
-    return make_shared<MacroCommand>(_board, _offset, new_cmds);
+    return make_shared<MacroCommand>(_board, offset, new_cmds);
+}
+
+void MacroCommand::SetOffset(const Coordinate& offset) {
+    _offset = offset;
 }

@@ -13,6 +13,7 @@ public:
     int GetSize();
     vector<vector<int>>* GetCanvas();
 
+    int GetGray();
     void SetGray(int gray);
     int GetColor();
     bool Plot(Coordinate coor);

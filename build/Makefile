@@ -244,6 +244,30 @@ src/cmd_invoker.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/cmd_invoker.cpp.s
 .PHONY : src/cmd_invoker.cpp.s
 
+src/cmd_phaser.obj: src/cmd_phaser.cpp.obj
+.PHONY : src/cmd_phaser.obj
+
+# target to build an object file
+src/cmd_phaser.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/cmd_phaser.cpp.obj
+.PHONY : src/cmd_phaser.cpp.obj
+
+src/cmd_phaser.i: src/cmd_phaser.cpp.i
+.PHONY : src/cmd_phaser.i
+
+# target to preprocess a source file
+src/cmd_phaser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/cmd_phaser.cpp.i
+.PHONY : src/cmd_phaser.cpp.i
+
+src/cmd_phaser.s: src/cmd_phaser.cpp.s
+.PHONY : src/cmd_phaser.s
+
+# target to generate assembly for a file
+src/cmd_phaser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/cmd_phaser.cpp.s
+.PHONY : src/cmd_phaser.cpp.s
+
 src/command.obj: src/command.cpp.obj
 .PHONY : src/command.obj
 
@@ -339,6 +363,9 @@ help:
 	@echo ... src/cmd_invoker.obj
 	@echo ... src/cmd_invoker.i
 	@echo ... src/cmd_invoker.s
+	@echo ... src/cmd_phaser.obj
+	@echo ... src/cmd_phaser.i
+	@echo ... src/cmd_phaser.s
 	@echo ... src/command.obj
 	@echo ... src/command.i
 	@echo ... src/command.s

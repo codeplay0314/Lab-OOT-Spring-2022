@@ -1,18 +1,38 @@
 #include <memory>
 #include <vector>
+#include<fstream>
+#include<sstream>
 #include <iostream>
+#include <algorithm>
 #include "board.h"
 #include "command.h"
+#include "cmd_phaser.h"
 #include "cmd_invoker.h"
 using namespace std;
 
 int main(int, char**) {
-
     int gscale = 256, color = 128;
     // cin >> gscale >> color;
     shared_ptr<Board> board = make_shared<Board>(20, gscale);
 
-/////////////////////////////////////
+    ifstream fin("../script.txt");
+    stringstream buffer;            // stringstream object
+    buffer << fin.rdbuf();          // read file content in stringstream object
+    string script(buffer.str());
+
+    CommandPhaser phaser;
+    vector<shared_ptr<Command>> cmds = phaser.PharseCommands(board, script);
+    CommandInvoker invoker;
+    invoker.Execute(cmds);
+    
+    return 0;
+}
+
+void Test() {
+    int gscale = 256, color = 128;
+    // cin >> gscale >> color;
+    shared_ptr<Board> board = make_shared<Board>(20, gscale);
+
     int x1 = 0, y1 = 0;
     int x2 = 19, y2 = 19;
     // cin >> x1 >> y1 >> x2 >> y2;
@@ -39,7 +59,7 @@ int main(int, char**) {
     shared_ptr<Command> macro2 = tmp->Copy();
 
 /////////////////////////////////////
-    CommandInvoker invoker(board);
+    CommandInvoker invoker;
 
     invoker.Execute(ColorCommand::New(board, color, true));
         invoker.Execute(ShowCommand::New(board));
@@ -74,6 +94,4 @@ int main(int, char**) {
 
     invoker.Redo();
         invoker.Execute(ShowCommand::New(board));
-
-    return 0;
 }

@@ -1,7 +1,21 @@
 
 #include "cmd_invoker.h"
 
-CommandInvoker::CommandInvoker(shared_ptr<Board> board) : _board(board) {}
+void CommandInvoker::Execute(vector<shared_ptr<Command>> cmds) {
+    for (auto cmd : cmds) {
+        switch (cmd->GetType()) {
+        case CommandType::UNDO:
+            Undo();
+            break;
+        case CommandType::REDO:
+            Redo();
+            break;
+        default:
+            Execute(cmd);
+            break;
+        }
+    }
+}
 
 void CommandInvoker::Execute(shared_ptr<Command> command) {
     if (command->Undoable()) command->SaveState();
