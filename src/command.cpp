@@ -97,12 +97,30 @@ void LineCommand::Execute(Coordinate offset) {
     // Bresenham's line algorithm
     int dx = _end.x() - _begin.x();
     int dy = _end.y() - _begin.y();
-    double k = (double)dy / dx;
-
-    for (int x = _begin.x(), y = _begin.y(), e = -x; x <= _end.x(); x++) {
-        _board->Plot(offset + Coordinate(x, y));
-        e += 2 * dy;
-        if (e > 0) e -= 2 * dx, y++;
+    if (abs(dx) >= abs(dy)) {
+        if (dy < 0) {
+            swap(_begin, _end);
+            dx = -dx;
+            dy = -dy;
+        }
+        for (int x = _begin.x(), y = _begin.y(), e = -x, aug = _begin.x() < _end.x() ? 1 : -1; ; x += aug) {
+            _board->Plot(offset + Coordinate(x, y));
+            e += 2 * dy;
+            if (e > 0) e -= abs(2 * dx), y++;
+            if (x == _end.x()) break;
+        }
+    } else {
+        if (dx < 0) {
+            swap(_begin, _end);
+            dx = -dx;
+            dy = -dy;
+        }
+        for (int x = _begin.x(), y = _begin.y(), e = -y, aug = _begin.y() < _end.y() ? 1 : -1; ; y += aug) {
+            _board->Plot(offset + Coordinate(x, y));
+            e += 2 * dx;
+            if (e > 0) e -= abs(2 * dy), x++;
+            if (y == _end.y()) break;
+        }
     }
 }
 
