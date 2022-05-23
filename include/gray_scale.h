@@ -2,7 +2,6 @@
 #define _GRAYSCALE_H_
 
 #include <memory>
-using namespace std;
 
 class GrayScale {
 public:
@@ -13,18 +12,18 @@ class BW2Scale : public GrayScale {
 public:
     virtual int GetColor(int gray);
     
-    static shared_ptr<GrayScale> Instance();
+    static std::shared_ptr<GrayScale> Instance();
 private:
-    static shared_ptr<GrayScale> _instance;
+    static std::shared_ptr<GrayScale> _instance;
 };
 
 class BW256Scale : public GrayScale {
 public:
     virtual int GetColor(int gray);
     
-    static shared_ptr<GrayScale> Instance();
+    static std::shared_ptr<GrayScale> Instance();
 private:
-    static shared_ptr<GrayScale> _instance;
+    static std::shared_ptr<GrayScale> _instance;
 };
 
 #endif

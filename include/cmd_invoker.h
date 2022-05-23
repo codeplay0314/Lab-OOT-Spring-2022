@@ -6,16 +6,16 @@
 
 class CommandInvoker {
 public:
-    void Execute(vector<shared_ptr<Command>> command);
-    void Execute(shared_ptr<Command> command);
+    void Execute(std::vector<std::shared_ptr<Command>> command);
+    void Execute(std::shared_ptr<Command> command);
     void Undo();
     void Redo();
     
-    CommandInvoker(shared_ptr<Board> board) : _board(board) {}
+    CommandInvoker(std::shared_ptr<Board> board) : _board(board) {}
 private:
-    stack<shared_ptr<Command>> _undo_stack;
-    stack<shared_ptr<Command>> _redo_stack;
-    shared_ptr<Board> _board;
+    std::stack<std::shared_ptr<Command>> _undo_stack;
+    std::stack<std::shared_ptr<Command>> _redo_stack;
+    std::shared_ptr<Board> _board;
 };
 
 #endif

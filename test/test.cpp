@@ -25,16 +25,17 @@ int main() {
         if (!endWith(out_file.substr(0, m - 4), "_result")) continue;
         if (in_file.substr(0, n - 4) != out_file.substr(0, m - 11)) continue;
         int gray = 0;
-        if (!endWith(in_file.substr(0, n - 4), "-g2")) gray = 2;
-        else if (!endWith(in_file.substr(0, n - 4), "-g256")) gray = 256;
+        if (endWith(in_file.substr(0, n - 4), "-g2")) gray = 2;
+        else if (endWith(in_file.substr(0, n - 4), "-g256")) gray = 256;
         else continue;
         
         // Set Parameters
-        string cmp_file = "test_out.txt";
-        freopen(cmp_file.c_str(), "w", stdout);
+        string cmp_file = "tmp.txt";
+        FILE* tmp = freopen(cmp_file.c_str(), "w", stdout);
         int argc = 4;
-        char* argv[4] = {"test", "-g", (char*)to_string(gray).c_str(), (char*)in_file.c_str()};
-        run(argc, argv);
+        const char* argv[4] = {"draw", "-g", to_string(gray).c_str(), in_file.c_str()};
+        run(argc, (char**)argv);
+        fclose(tmp);
 
         // Compare Results
         ifstream op;
@@ -46,7 +47,16 @@ int main() {
         while(!op.eof()) str2 += op.get();
         op.close();
         remove(cmp_file.c_str());
-        if (str1 != str2) return 0;
+        if (str1 != str2) {
+            FILE* fail_file = freopen("fail.log", "w", stdout);
+            cout << argv[0] << " "  << argv[1] << " " << argv[2] << " " << argv[3] << " " << endl;
+            cout << "------- Your Output of " << in_file <<" -------" << endl;
+            cout << str2 << endl;
+            cout << "------- Standard Output -------" << endl;
+            cout << str1 << endl;
+            fclose(fail_file);
+            return 0;
+        }
     }
 
     fclose(stdout);

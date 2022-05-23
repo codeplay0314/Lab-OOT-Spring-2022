@@ -1,15 +1,12 @@
 #include <map>
-#include <memory>
-#include <string>
-#include <vector>
 #include <algorithm>
 #include "command.h"
 #include "cmd_parser.h"
 
 #include <iostream>
 
-vector<string> SplitCommand(const string& cmd) {
-    vector<string> cmds;
+std::vector<std::string> SplitCommand(const std::string& cmd) {
+    std::vector<std::string> cmds;
     bool inmacro = false;
     bool instring = false;
     for (int l = 0, r = 0, undo, redo; l < cmd.length(); r++) {
@@ -44,8 +41,8 @@ vector<string> SplitCommand(const string& cmd) {
     return cmds;
 }
 
-vector<string> TrimCommand(const string& cmd) {
-    vector<string> res;
+std::vector<std::string> TrimCommand(const std::string& cmd) {
+    std::vector<std::string> res;
     int l = 0, r = 0;
     while (r < cmd.length() && cmd[r] != '(') r++;
     res.push_back(cmd.substr(l, r));
@@ -60,15 +57,15 @@ vector<string> TrimCommand(const string& cmd) {
     return res;
 }
 
-vector<shared_ptr<Command>> CommandParser::ParseCommands(shared_ptr<Board> board, string& str) {
-    vector<shared_ptr<Command>> res;
+std::vector<std::shared_ptr<Command>> CommandParser::ParseCommands(std::shared_ptr<Board> board, std::string& str) {
+    std::vector<std::shared_ptr<Command>> res;
 
     // Remove whitespaces
     str.erase(remove_if(str.begin(), str.end(), ::isspace), str.end());
 
-    vector<string> cmds = SplitCommand(str);
+    std::vector<std::string> cmds = SplitCommand(str);
     
-    for (string cmd : cmds) {
+    for (std::string cmd : cmds) {
         if (cmd[0] == '#') {
             RegisterMacroCommand(cmd, board);
         } else {
@@ -79,28 +76,28 @@ vector<shared_ptr<Command>> CommandParser::ParseCommands(shared_ptr<Board> board
     return res;
 }
 
-void CommandParser::RegisterMacroCommand(string& cmd, shared_ptr<Board> board) {
+void CommandParser::RegisterMacroCommand(std::string& cmd, std::shared_ptr<Board> board) {
     int len = cmd.length();
     int l, r;
     for (int i = 1; i < len; i++) {
         if (cmd[i] == '{') l = i;
         if (cmd[i] == '}') r = i;
     }
-    vector<string> strs = SplitCommand(cmd.substr(l + 1, r - l - 1));
-    vector<shared_ptr<Command>> cmds;
-    for (string str : strs) {
+    std::vector<std::string> strs = SplitCommand(cmd.substr(l + 1, r - l - 1));
+    std::vector<std::shared_ptr<Command>> cmds;
+    for (std::string str : strs) {
         cmds.push_back(GetCommand(str, board));
     }
-    string name = cmd.substr(1, l - 1); 
+    std::string name = cmd.substr(1, l - 1); 
     _macro_table[name] = MacroCommand::New(board, name, Coordinate(0, 0), cmds);
 }
 
-shared_ptr<Command> CommandParser::GetMacroCommand(string& cmd, const Coordinate& offset) {
+std::shared_ptr<Command> CommandParser::GetMacroCommand(std::string& cmd, const Coordinate& offset) {
     return _macro_table[cmd]->Copy(offset);
 }
 
-shared_ptr<Command> CommandParser::GetCommand(string& cmd, shared_ptr<Board> board) {
-    vector<string> tokens = TrimCommand(cmd);
+std::shared_ptr<Command> CommandParser::GetCommand(std::string& cmd, std::shared_ptr<Board> board) {
+    std::vector<std::string> tokens = TrimCommand(cmd);
     if (tokens[0] == "color") {
         return ColorCommand::New(board, atoi(tokens[1].c_str()), true);
     } else if (tokens[0] == "line") {
@@ -113,7 +110,7 @@ shared_ptr<Command> CommandParser::GetCommand(string& cmd, shared_ptr<Board> boa
     } else if (tokens[0] == "undo") {
         return Command::New(CommandType::UNDO);
     } else if (tokens[0] == "redo") {
-        return Command::New(CommandType::REDO);             
+        return Command::New(CommandType::REDO);
     } else {
         Coordinate p = Coordinate(atoi(tokens[1].c_str()), atoi(tokens[2].c_str()));
         if (tokens[0][0] == '!') tokens[0] = tokens[0].substr(1, cmd.size() - 1);

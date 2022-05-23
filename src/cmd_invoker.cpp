@@ -1,40 +1,39 @@
-
 #include <iostream>
 #include "cmd_invoker.h"
 
-void CommandInvoker::Execute(vector<shared_ptr<Command>> cmds) {
+void CommandInvoker::Execute(std::vector<std::shared_ptr<Command>> cmds) {
     for (auto cmd : cmds) {
-        // shared_ptr<Board> board = cmd->GetBoard();
+        // std::shared_ptr<Board> board = cmd->GetBoard();
         CommandType type = cmd->GetType();
         if (type == MACRO) {
-            cout << "Execute Macro Command: " + dynamic_pointer_cast<MacroCommand>(cmd)->GetName() << endl;
+            std::cout << "Execute Macro Command: " + std::dynamic_pointer_cast<MacroCommand>(cmd)->GetName() << std::endl;
             Execute(cmd);
         } else if (type == CommandType::UNDO) {
-            cout << "Execute Undo Command" << endl;
+            std::cout << "Execute Undo Command" << std::endl;
             Undo();
         } else if (type == CommandType::REDO) {
-            cout << "Execute Redo Command" << endl;
+            std::cout << "Execute Redo Command" << std::endl;
             Redo();
         } else if (type == CommandType::LINE) {
-            cout << "Execute Line Command" << endl;
+            std::cout << "Execute Line Command" << std::endl;
             Execute(cmd);
         } else if (type == CommandType::TEXT) {
-            cout << "Execute Text Command" << endl;
+            std::cout << "Execute Text Command" << std::endl;
             Execute(cmd);
         } else if (type == CommandType::COLOR) {
-            cout << "Execute Color Command" << endl;
+            std::cout << "Execute Color Command" << std::endl;
             Execute(cmd);
         }
 
         if (type == CommandType::COLOR) {
-            cout << endl;
+            std::cout << std::endl;
         } else {
             Execute(ShowCommand::New(_board));
         }
     }
 }
 
-void CommandInvoker::Execute(shared_ptr<Command> command) {
+void CommandInvoker::Execute(std::shared_ptr<Command> command) {
     if (command->Undoable()) command->SaveState();
     command->Execute();
     if (command->Undoable()) {
@@ -45,7 +44,7 @@ void CommandInvoker::Execute(shared_ptr<Command> command) {
 
 void CommandInvoker::Undo() {
     if (_undo_stack.empty()) return;
-    shared_ptr<Command> cmd = _undo_stack.top();
+    std::shared_ptr<Command> cmd = _undo_stack.top();
     _undo_stack.pop();
     cmd->Undo();
     _redo_stack.push(cmd);
@@ -53,7 +52,7 @@ void CommandInvoker::Undo() {
 
 void CommandInvoker::Redo() {
     if (_redo_stack.empty()) return;
-    shared_ptr<Command> cmd = _redo_stack.top();
+    std::shared_ptr<Command> cmd = _redo_stack.top();
     _redo_stack.pop();
     cmd->Execute();
     _undo_stack.push(cmd);

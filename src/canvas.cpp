@@ -1,5 +1,5 @@
 #include "canvas.h"
 
-vector<vector<int>>* Canvas::Get() {
+std::vector<std::vector<int>>* Canvas::Get() {
     return &_canvas;
 }

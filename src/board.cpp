@@ -1,4 +1,3 @@
-#include <iostream>
 #include "board.h"
 
 Board::Board(int n, int gscale) : _canvas(n), _size(n) {
@@ -10,7 +9,7 @@ int Board::GetSize() {
     return _size;
 }
 
-vector<vector<int>>* Board::GetCanvas() {
+std::vector<std::vector<int>>* Board::GetCanvas() {
     return _canvas.Get();
 }
 

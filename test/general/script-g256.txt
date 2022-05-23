@@ -8,7 +8,7 @@ text(11, 0, "!")
 #macro1 {
     color(200)
     line(0, 0, 19, 19)
-    text(11, 0, "!")
+    text(11, 0, "WARNING!")
 }
 !macro1(2,1)
 

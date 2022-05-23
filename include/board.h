@@ -11,7 +11,7 @@ public:
     Board(int n, int gscale);
 
     int GetSize();
-    vector<vector<int>>* GetCanvas();
+    std::vector<std::vector<int>>* GetCanvas();
 
     int GetGray();
     void SetGray(int gray);
@@ -22,7 +22,7 @@ private:
     int _size;
 
     int _gray = 0;
-    shared_ptr<GrayScale> _gscale;
+    std::shared_ptr<GrayScale> _gscale;
 };
 
 #endif
