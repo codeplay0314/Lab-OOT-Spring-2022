@@ -523,17 +523,17 @@ draw/fast:
 .PHONY : draw/fast
 
 #=============================================================================
-# Target rules for targets named test_line
+# Target rules for targets named autotest
 
 # Build rule for target.
-test_line: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 test_line
-.PHONY : test_line
+autotest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 autotest
+.PHONY : autotest
 
 # fast build rule for target.
-test_line/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/build
-.PHONY : test_line/fast
+autotest/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/build
+.PHONY : autotest/fast
 
 main.obj: main.cpp.obj
 .PHONY : main.obj
@@ -565,7 +565,7 @@ src/board.obj: src/board.cpp.obj
 # target to build an object file
 src/board.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/board.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/board.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/board.cpp.obj
 .PHONY : src/board.cpp.obj
 
 src/board.i: src/board.cpp.i
@@ -574,7 +574,7 @@ src/board.i: src/board.cpp.i
 # target to preprocess a source file
 src/board.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/board.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/board.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/board.cpp.i
 .PHONY : src/board.cpp.i
 
 src/board.s: src/board.cpp.s
@@ -583,7 +583,7 @@ src/board.s: src/board.cpp.s
 # target to generate assembly for a file
 src/board.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/board.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/board.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/board.cpp.s
 .PHONY : src/board.cpp.s
 
 src/canvas.obj: src/canvas.cpp.obj
@@ -592,7 +592,7 @@ src/canvas.obj: src/canvas.cpp.obj
 # target to build an object file
 src/canvas.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/canvas.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/canvas.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/canvas.cpp.obj
 .PHONY : src/canvas.cpp.obj
 
 src/canvas.i: src/canvas.cpp.i
@@ -601,7 +601,7 @@ src/canvas.i: src/canvas.cpp.i
 # target to preprocess a source file
 src/canvas.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/canvas.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/canvas.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/canvas.cpp.i
 .PHONY : src/canvas.cpp.i
 
 src/canvas.s: src/canvas.cpp.s
@@ -610,7 +610,7 @@ src/canvas.s: src/canvas.cpp.s
 # target to generate assembly for a file
 src/canvas.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/canvas.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/canvas.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/canvas.cpp.s
 .PHONY : src/canvas.cpp.s
 
 src/char_lib.obj: src/char_lib.cpp.obj
@@ -619,7 +619,7 @@ src/char_lib.obj: src/char_lib.cpp.obj
 # target to build an object file
 src/char_lib.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/char_lib.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/char_lib.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/char_lib.cpp.obj
 .PHONY : src/char_lib.cpp.obj
 
 src/char_lib.i: src/char_lib.cpp.i
@@ -628,7 +628,7 @@ src/char_lib.i: src/char_lib.cpp.i
 # target to preprocess a source file
 src/char_lib.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/char_lib.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/char_lib.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/char_lib.cpp.i
 .PHONY : src/char_lib.cpp.i
 
 src/char_lib.s: src/char_lib.cpp.s
@@ -637,7 +637,7 @@ src/char_lib.s: src/char_lib.cpp.s
 # target to generate assembly for a file
 src/char_lib.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/char_lib.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/char_lib.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/char_lib.cpp.s
 .PHONY : src/char_lib.cpp.s
 
 src/cmd_invoker.obj: src/cmd_invoker.cpp.obj
@@ -646,7 +646,7 @@ src/cmd_invoker.obj: src/cmd_invoker.cpp.obj
 # target to build an object file
 src/cmd_invoker.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/cmd_invoker.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/cmd_invoker.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/cmd_invoker.cpp.obj
 .PHONY : src/cmd_invoker.cpp.obj
 
 src/cmd_invoker.i: src/cmd_invoker.cpp.i
@@ -655,7 +655,7 @@ src/cmd_invoker.i: src/cmd_invoker.cpp.i
 # target to preprocess a source file
 src/cmd_invoker.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/cmd_invoker.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/cmd_invoker.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/cmd_invoker.cpp.i
 .PHONY : src/cmd_invoker.cpp.i
 
 src/cmd_invoker.s: src/cmd_invoker.cpp.s
@@ -664,35 +664,35 @@ src/cmd_invoker.s: src/cmd_invoker.cpp.s
 # target to generate assembly for a file
 src/cmd_invoker.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/cmd_invoker.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/cmd_invoker.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/cmd_invoker.cpp.s
 .PHONY : src/cmd_invoker.cpp.s
 
-src/cmd_phaser.obj: src/cmd_phaser.cpp.obj
-.PHONY : src/cmd_phaser.obj
+src/cmd_parser.obj: src/cmd_parser.cpp.obj
+.PHONY : src/cmd_parser.obj
 
 # target to build an object file
-src/cmd_phaser.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/cmd_phaser.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/cmd_phaser.cpp.obj
-.PHONY : src/cmd_phaser.cpp.obj
+src/cmd_parser.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/cmd_parser.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/cmd_parser.cpp.obj
+.PHONY : src/cmd_parser.cpp.obj
 
-src/cmd_phaser.i: src/cmd_phaser.cpp.i
-.PHONY : src/cmd_phaser.i
+src/cmd_parser.i: src/cmd_parser.cpp.i
+.PHONY : src/cmd_parser.i
 
 # target to preprocess a source file
-src/cmd_phaser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/cmd_phaser.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/cmd_phaser.cpp.i
-.PHONY : src/cmd_phaser.cpp.i
+src/cmd_parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/cmd_parser.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/cmd_parser.cpp.i
+.PHONY : src/cmd_parser.cpp.i
 
-src/cmd_phaser.s: src/cmd_phaser.cpp.s
-.PHONY : src/cmd_phaser.s
+src/cmd_parser.s: src/cmd_parser.cpp.s
+.PHONY : src/cmd_parser.s
 
 # target to generate assembly for a file
-src/cmd_phaser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/cmd_phaser.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/cmd_phaser.cpp.s
-.PHONY : src/cmd_phaser.cpp.s
+src/cmd_parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/cmd_parser.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/cmd_parser.cpp.s
+.PHONY : src/cmd_parser.cpp.s
 
 src/command.obj: src/command.cpp.obj
 .PHONY : src/command.obj
@@ -700,7 +700,7 @@ src/command.obj: src/command.cpp.obj
 # target to build an object file
 src/command.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/command.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/command.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/command.cpp.obj
 .PHONY : src/command.cpp.obj
 
 src/command.i: src/command.cpp.i
@@ -709,7 +709,7 @@ src/command.i: src/command.cpp.i
 # target to preprocess a source file
 src/command.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/command.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/command.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/command.cpp.i
 .PHONY : src/command.cpp.i
 
 src/command.s: src/command.cpp.s
@@ -718,7 +718,7 @@ src/command.s: src/command.cpp.s
 # target to generate assembly for a file
 src/command.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/command.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/command.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/command.cpp.s
 .PHONY : src/command.cpp.s
 
 src/draw.obj: src/draw.cpp.obj
@@ -727,7 +727,7 @@ src/draw.obj: src/draw.cpp.obj
 # target to build an object file
 src/draw.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/draw.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/draw.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/draw.cpp.obj
 .PHONY : src/draw.cpp.obj
 
 src/draw.i: src/draw.cpp.i
@@ -736,7 +736,7 @@ src/draw.i: src/draw.cpp.i
 # target to preprocess a source file
 src/draw.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/draw.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/draw.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/draw.cpp.i
 .PHONY : src/draw.cpp.i
 
 src/draw.s: src/draw.cpp.s
@@ -745,7 +745,7 @@ src/draw.s: src/draw.cpp.s
 # target to generate assembly for a file
 src/draw.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/draw.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/draw.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/draw.cpp.s
 .PHONY : src/draw.cpp.s
 
 src/gray_scale.obj: src/gray_scale.cpp.obj
@@ -754,7 +754,7 @@ src/gray_scale.obj: src/gray_scale.cpp.obj
 # target to build an object file
 src/gray_scale.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/gray_scale.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/gray_scale.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/gray_scale.cpp.obj
 .PHONY : src/gray_scale.cpp.obj
 
 src/gray_scale.i: src/gray_scale.cpp.i
@@ -763,7 +763,7 @@ src/gray_scale.i: src/gray_scale.cpp.i
 # target to preprocess a source file
 src/gray_scale.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/gray_scale.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/gray_scale.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/gray_scale.cpp.i
 .PHONY : src/gray_scale.cpp.i
 
 src/gray_scale.s: src/gray_scale.cpp.s
@@ -772,32 +772,32 @@ src/gray_scale.s: src/gray_scale.cpp.s
 # target to generate assembly for a file
 src/gray_scale.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\draw.dir\build.make CMakeFiles/draw.dir/src/gray_scale.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/src/gray_scale.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/src/gray_scale.cpp.s
 .PHONY : src/gray_scale.cpp.s
 
-test/line_cmd/test_line.obj: test/line_cmd/test_line.cpp.obj
-.PHONY : test/line_cmd/test_line.obj
+test/test.obj: test/test.cpp.obj
+.PHONY : test/test.obj
 
 # target to build an object file
-test/line_cmd/test_line.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/test/line_cmd/test_line.cpp.obj
-.PHONY : test/line_cmd/test_line.cpp.obj
+test/test.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/test/test.cpp.obj
+.PHONY : test/test.cpp.obj
 
-test/line_cmd/test_line.i: test/line_cmd/test_line.cpp.i
-.PHONY : test/line_cmd/test_line.i
+test/test.i: test/test.cpp.i
+.PHONY : test/test.i
 
 # target to preprocess a source file
-test/line_cmd/test_line.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/test/line_cmd/test_line.cpp.i
-.PHONY : test/line_cmd/test_line.cpp.i
+test/test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/test/test.cpp.i
+.PHONY : test/test.cpp.i
 
-test/line_cmd/test_line.s: test/line_cmd/test_line.cpp.s
-.PHONY : test/line_cmd/test_line.s
+test/test.s: test/test.cpp.s
+.PHONY : test/test.s
 
 # target to generate assembly for a file
-test/line_cmd/test_line.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_line.dir\build.make CMakeFiles/test_line.dir/test/line_cmd/test_line.cpp.s
-.PHONY : test/line_cmd/test_line.cpp.s
+test/test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\autotest.dir\build.make CMakeFiles/autotest.dir/test/test.cpp.s
+.PHONY : test/test.cpp.s
 
 # Help Target
 help:
@@ -838,8 +838,8 @@ help:
 	@echo ... NightlySubmit
 	@echo ... NightlyTest
 	@echo ... NightlyUpdate
+	@echo ... autotest
 	@echo ... draw
-	@echo ... test_line
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
@@ -855,9 +855,9 @@ help:
 	@echo ... src/cmd_invoker.obj
 	@echo ... src/cmd_invoker.i
 	@echo ... src/cmd_invoker.s
-	@echo ... src/cmd_phaser.obj
-	@echo ... src/cmd_phaser.i
-	@echo ... src/cmd_phaser.s
+	@echo ... src/cmd_parser.obj
+	@echo ... src/cmd_parser.i
+	@echo ... src/cmd_parser.s
 	@echo ... src/command.obj
 	@echo ... src/command.i
 	@echo ... src/command.s
@@ -867,9 +867,9 @@ help:
 	@echo ... src/gray_scale.obj
 	@echo ... src/gray_scale.i
 	@echo ... src/gray_scale.s
-	@echo ... test/line_cmd/test_line.obj
-	@echo ... test/line_cmd/test_line.i
-	@echo ... test/line_cmd/test_line.s
+	@echo ... test/test.obj
+	@echo ... test/test.i
+	@echo ... test/test.s
 .PHONY : help
 
 

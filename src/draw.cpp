@@ -6,7 +6,7 @@
 #include "board.h"
 #include "draw.h"
 #include "command.h"
-#include "cmd_phaser.h"
+#include "cmd_parser.h"
 #include "cmd_invoker.h"
 using namespace std;
 
@@ -32,8 +32,8 @@ void run(int argc, char** argv) {
         }
     }
 
-    CommandPhaser phaser;
-    vector<shared_ptr<Command>> cmds = phaser.PharseCommands(board, script);
+    CommandParser parser;
+    vector<shared_ptr<Command>> cmds = parser.ParseCommands(board, script);
     CommandInvoker invoker(board);
     invoker.Execute(cmds);
 }

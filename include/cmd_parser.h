@@ -1,11 +1,11 @@
-#ifndef _CMD_PHASER_H_
-#define _CMD_PHASER_H_
+#ifndef _CMD_PARSER_H_
+#define _CMD_PARSER_H_
 
 #include <map>
 
-class CommandPhaser {
+class CommandParser {
 public:
-    vector<shared_ptr<Command>> PharseCommands(shared_ptr<Board> board, string& str);
+    vector<shared_ptr<Command>> ParseCommands(shared_ptr<Board> board, string& str);
 private:
     void RegisterMacroCommand(string& cmd, shared_ptr<Board> board);
     shared_ptr<Command> GetCommand(string& cmd, shared_ptr<Board> board);

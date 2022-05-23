@@ -4,7 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include "command.h"
-#include "cmd_phaser.h"
+#include "cmd_parser.h"
 
 #include <iostream>
 
@@ -60,7 +60,7 @@ vector<string> TrimCommand(const string& cmd) {
     return res;
 }
 
-vector<shared_ptr<Command>> CommandPhaser::PharseCommands(shared_ptr<Board> board, string& str) {
+vector<shared_ptr<Command>> CommandParser::ParseCommands(shared_ptr<Board> board, string& str) {
     vector<shared_ptr<Command>> res;
 
     // Remove whitespaces
@@ -79,7 +79,7 @@ vector<shared_ptr<Command>> CommandPhaser::PharseCommands(shared_ptr<Board> boar
     return res;
 }
 
-void CommandPhaser::RegisterMacroCommand(string& cmd, shared_ptr<Board> board) {
+void CommandParser::RegisterMacroCommand(string& cmd, shared_ptr<Board> board) {
     int len = cmd.length();
     int l, r;
     for (int i = 1; i < len; i++) {
@@ -95,11 +95,11 @@ void CommandPhaser::RegisterMacroCommand(string& cmd, shared_ptr<Board> board) {
     _macro_table[name] = MacroCommand::New(board, name, Coordinate(0, 0), cmds);
 }
 
-shared_ptr<Command> CommandPhaser::GetMacroCommand(string& cmd, const Coordinate& offset) {
+shared_ptr<Command> CommandParser::GetMacroCommand(string& cmd, const Coordinate& offset) {
     return _macro_table[cmd]->Copy(offset);
 }
 
-shared_ptr<Command> CommandPhaser::GetCommand(string& cmd, shared_ptr<Board> board) {
+shared_ptr<Command> CommandParser::GetCommand(string& cmd, shared_ptr<Board> board) {
     vector<string> tokens = TrimCommand(cmd);
     if (tokens[0] == "color") {
         return ColorCommand::New(board, atoi(tokens[1].c_str()), true);
