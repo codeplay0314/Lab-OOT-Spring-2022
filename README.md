@@ -5,11 +5,19 @@ A drawing program on demand (Course Lab of Object Oriented Technology, Fudan Spr
 [![Build Status](https://travis-ci.org/pingcap/tidb.svg?branch=master)](https://travis-ci.org/pingcap/tidb)
 
 
-- To build executable file, enter
+- To build executable file
+    In Windows environment, enter
     ```bash
     mkdir build
     cd build
     cmake --build .
+    ```
+    In Linux environment, enter
+    ```bash
+    mkdir build
+    cd build
+    cmake ..
+    make
     ```
 
 - To test cases manually, enter
