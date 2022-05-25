@@ -6,14 +6,18 @@ A drawing program on demand (Course Lab of Object Oriented Technology, Fudan Spr
 
 
 - To build executable file
+
     In Windows environment, enter
     ```bash
+    git checkout windows
     mkdir build
     cd build
     cmake --build .
     ```
+
     In Linux environment, enter
     ```bash
+    git checkout linux
     mkdir build
     cd build
     cmake ..
@@ -101,3 +105,15 @@ A drawing program on demand (Course Lab of Object Oriented Technology, Fudan Spr
     Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.
     ```
     And there will be a file named `fail.log` in the corresponding folder to give more infomation.
+
+    For single folder, `color_cmd` for example, enter
+    ```bash
+    ctest -R color_cmd
+    ```
+
+    or, put the `autotest` binary under the `color_cmd` folder, and run
+    ```bash
+    ./autotest
+    ```
+
+    If the test is passed, the output will be an `OK` string.
