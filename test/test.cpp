@@ -1,5 +1,6 @@
 #include "draw.h"
-#include <io.h>
+#include <dirent.h>
+#include <sys/types.h>
 #include <cstdio>
 #include <vector>
 #include <cstring>
@@ -73,19 +74,17 @@ bool endWith(const string& str, const string& end) {
     return true;
 }
 
-void getFileNames(string path, vector<string>& files) {
-    intptr_t hFile = 0;
-    struct _finddata_t fileinfo;
-    string p;
-    if ((hFile = _findfirst(p.assign(path).append("\\*").c_str(), &fileinfo)) != -1) {
-        do {
-            if ((fileinfo.attrib & _A_SUBDIR)) {
-                if (strcmp(fileinfo.name, ".") != 0 && strcmp(fileinfo.name, "..") != 0)
-                    getFileNames(p.assign(path).append("\\").append(fileinfo.name), files);
-            } else {
-                files.push_back(p.assign(path).append("\\").append(fileinfo.name));
-            }
-        } while (_findnext(hFile, &fileinfo) == 0);
-        _findclose(hFile);
+void getFileNames(string path, vector<string>& filenames) {
+    DIR* pDir;
+    struct dirent* ptr;
+    if (!(pDir = opendir(path.c_str()))) {
+        cout << "Folder doesn't Exist!"<<endl;
+        return;
     }
+    while ((ptr = readdir(pDir)) != 0) {
+        if (strcmp(ptr->d_name, ".") != 0 && strcmp(ptr->d_name, "..") != 0) {
+            filenames.push_back(path + "/" + ptr->d_name);
+        }
+    }
+    closedir(pDir);
 }
