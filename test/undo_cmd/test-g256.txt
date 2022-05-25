@@ -1,0 +1,30 @@
+color(128)
+
+line(0,0,19,19)
+
+undo
+
+text(11, 0, "!")
+#macro1 {
+    color(200)
+    line(0, 0, 19, 19)
+    text(11, 0, "WARNING!")
+}
+!macro1(2,1)
+
+#macro2 {
+    !macro1(2,1)
+}
+!macro2(2,1)
+
+undo
+
+redo
+
+line(0,0,19,19)
+
+undo
+
+undo
+
+line(0,0,19,19)

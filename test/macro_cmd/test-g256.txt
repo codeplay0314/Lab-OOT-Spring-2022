@@ -1,0 +1,17 @@
+#macro1 {
+    color(200)
+    line(0, 0, 10, 19)
+    text(11, 0, "WARNING!")
+}
+!macro1(2,1)
+
+color(150)
+
+#macro2 {
+    !macro1(2,1)
+    color(100)
+    line(0,0,49,0)
+    !macro1(2,21)
+}
+
+!macro2(2,1)
