@@ -69,7 +69,9 @@ std::vector<std::shared_ptr<Command>> CommandParser::ParseCommands(std::shared_p
         if (cmd[0] == '#') {
             RegisterMacroCommand(cmd, board);
         } else {
-            res.push_back(GetCommand(cmd, board));
+            std::shared_ptr<Command> command = GetCommand(cmd, board);
+            command->SetInfo(cmd);
+            res.push_back(command);
         }
     }
 

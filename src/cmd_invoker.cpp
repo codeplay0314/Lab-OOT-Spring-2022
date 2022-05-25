@@ -3,7 +3,6 @@
 
 void CommandInvoker::Execute(std::vector<std::shared_ptr<Command>> cmds) {
     for (auto cmd : cmds) {
-        // std::shared_ptr<Board> board = cmd->GetBoard();
         CommandType type = cmd->GetType();
         if (type == MACRO) {
             std::cout << "Execute Macro Command: " + std::dynamic_pointer_cast<MacroCommand>(cmd)->GetName() << std::endl;
@@ -14,14 +13,8 @@ void CommandInvoker::Execute(std::vector<std::shared_ptr<Command>> cmds) {
         } else if (type == CommandType::REDO) {
             std::cout << "Execute Redo Command" << std::endl;
             Redo();
-        } else if (type == CommandType::LINE) {
-            std::cout << "Execute Line Command" << std::endl;
-            Execute(cmd);
-        } else if (type == CommandType::TEXT) {
-            std::cout << "Execute Text Command" << std::endl;
-            Execute(cmd);
-        } else if (type == CommandType::COLOR) {
-            std::cout << "Execute Color Command" << std::endl;
+        } else {
+            std::cout << "Execute Command: " + cmd->GetInfo() << std::endl;
             Execute(cmd);
         }
 

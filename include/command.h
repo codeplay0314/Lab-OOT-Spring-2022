@@ -24,8 +24,10 @@ public:
 
     virtual CommandType GetType() { return _type; }
     virtual std::shared_ptr<Board> GetBoard() { return _board; }
+    virtual std::string GetInfo() { return _info; }
     virtual void SetExecuted(bool executed) { _executed = executed; }
     virtual void SetPreBoard(std::shared_ptr<Board> pre_board) { _pre_board = pre_board; }
+    virtual void SetInfo(const std::string& info) { _info = info; }
 
     virtual std::shared_ptr<Command> New();
     static std::shared_ptr<Command> New(CommandType type);
@@ -40,6 +42,7 @@ protected:
     std::shared_ptr<Board> _pre_board;
     bool _executed = false;
     bool _undoable = true;
+    std::string _info;
 };
 
 class ShowCommand : public Command {
