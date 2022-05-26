@@ -4,6 +4,10 @@ A drawing program on demand (Course Lab of Object Oriented Technology, Fudan Spr
 [![Language](https://img.shields.io/badge/language-C%2B%2B-blue.svg)]()
 [![Build Status](https://travis-ci.org/pingcap/tidb.svg?branch=master)](https://travis-ci.org/pingcap/tidb)
 
+See:
+[GitHub repo](https://github.com/codeplay0314/Lab-OOT-Spring-2022)
+
+[Design patterns](files/Design.pdf) used in this Lab
 
 - To build executable file
 
