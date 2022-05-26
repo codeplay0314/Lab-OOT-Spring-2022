@@ -4,12 +4,28 @@ A drawing program on demand (Course Lab of Object Oriented Technology, Fudan Spr
 [![Language](https://img.shields.io/badge/language-C%2B%2B-blue.svg)]()
 [![Build Status](https://travis-ci.org/pingcap/tidb.svg?branch=master)](https://travis-ci.org/pingcap/tidb)
 
+See:
+[GitHub repo](https://github.com/codeplay0314/Lab-OOT-Spring-2022)
 
-- To build executable file, enter
+[Design patterns](files/Design.pdf) used in this Lab
+
+- To build executable file
+
+    In Windows environment, enter
     ```bash
+    git checkout windows
     mkdir build
     cd build
     cmake --build .
+    ```
+
+    In Linux environment, enter
+    ```bash
+    git checkout linux
+    mkdir build
+    cd build
+    cmake ..
+    make
     ```
 
 - To test cases manually, enter
@@ -93,3 +109,15 @@ A drawing program on demand (Course Lab of Object Oriented Technology, Fudan Spr
     Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.
     ```
     And there will be a file named `fail.log` in the corresponding folder to give more infomation.
+
+    For single folder, `color_cmd` for example, enter
+    ```bash
+    ctest -R color_cmd
+    ```
+
+    or, put the `autotest` binary under the `color_cmd` folder, and run
+    ```bash
+    ./autotest
+    ```
+
+    If the test is passed, the output will be an `OK` string.

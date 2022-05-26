@@ -1,3 +1,6 @@
 .vscode
 build/*
-!build/Makefile
+!build/draw.exe
+!build/autotest.exe
+!build/draw
+!build/autotest
